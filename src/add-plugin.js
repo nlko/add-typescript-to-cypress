@@ -45,7 +45,10 @@ if (amDependency) {
   }
 
   const addPluginFile = () => {
-    console.log('copying plugin file')
+    // Ensure plugins folder exist before copy
+    fs.mkdirSync(pluginsFolder, 0755)
+    
+    console.log('copying plugin file')    
     const pluginsIndex = path.join(pluginsFolder, 'index.js')
     const sourcePlugin = path.join(__dirname, 'plugin.js')
     shell.cp(sourcePlugin, pluginsIndex)
